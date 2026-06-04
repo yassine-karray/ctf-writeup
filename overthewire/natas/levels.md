@@ -12,6 +12,7 @@ Inspect element just reads what was already delivered to you.
 
 **New concept:** Always check page source on web challenges. 
 Client-side code is never truly hidden  the browser has to receive it to render it.
+
 ---
 ## Natas 0 → 1
 
