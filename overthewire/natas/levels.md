@@ -14,6 +14,7 @@ Inspect element just reads what was already delivered to you.
 Client-side code is never truly hidden  the browser has to receive it to render it.
 
 ---
+
 ## Natas 0 → 1
 
 **Challenge:** Find the password hidden in the page source  but right-click is blocked.
@@ -32,7 +33,9 @@ your browser before any JavaScript ran  nothing can take it back.
 **New concept:** Client-side restrictions are cosmetic. JavaScript can hide buttons, 
 block menus, and disable interactions  but it cannot hide data that was already 
 delivered to the browser. Ctrl+Shift+C, Ctrl+U (view source), and F12 always work.
+
 ---
+
 ## Natas 1 → 2
 
 **Challenge:** Find the password  nothing visible in the page source.
@@ -74,9 +77,15 @@ in any web recon.
 ## Natas 3 → 4
 
 **Challenge:** Page says "Access disallowed"  only users coming from natas5 are authorized. 
-**What I tried first:** Installed ModHeader extension to fake the Referer header in the browser. Couldn't get it to work properly. **What worked:** ```bash curl -u natas4:PASSWORD -H "Referer: http://natas5.natas.labs.overthewire.org/" http://natas4.natas.labs.overthewire.org/index.php ``` Password was in the HTML response. 
+
+**What I tried first:** Installed ModHeader extension to fake the Referer header in the browser. Couldn't get it to work properly.
+
+**What worked:** ```bash curl -u natas4:PASSWORD -H "Referer: http://natas5.natas.labs.overthewire.org/" http://natas4.natas.labs.overthewire.org/index.php ``` Password was in the HTML response. 
+
 **Why it worked:** The server checks the Referer header to see where you're coming from. Referer is just a header the client sends  completely controllable. Curl lets you set any header manually, so you can lie to the server about where you came from.
+
 **New concept:** Never trust client-supplied headers for access control. Referer, User-Agent, X-Forwarded-For  all of them can be faked trivially. If a server grants access based on Referer alone, it has zero real security.
+
 ---
 ## Natas 4 → 5
 
